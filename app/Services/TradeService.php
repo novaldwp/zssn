@@ -21,6 +21,10 @@ class TradeService {
 
     public function createTrade($request)
     {
+        if ($request->survivor_id == $request->other_survivor) {
+            throw new Exception("You can't trade with yourself.", 400);
+        }
+
         // survivor who want to trade
         $tSurvivor = $this->survivorRepository->getSurvivorItemsById($request->survivor_id);
 
@@ -28,9 +32,9 @@ class TradeService {
         $oSurvivor = $this->survivorRepository->getSurvivorItemsById($request->other_survivor);
 
         // check survivor and other survivor is infected
-        // if ($tSurvivor->is_infected == 1 || $oSurvivor->is_infected == 1) {
-        //     throw new Exception("Failed to make an exchange, because one of both survivor are infected", 400);
-        // }
+        if ($tSurvivor->is_infected == 1 || $oSurvivor->is_infected == 1) {
+            throw new Exception("Failed to make an exchange, because one of both survivor are infected", 400);
+        }
 
         // set default variable
         $tSurvivorItems    = [];
