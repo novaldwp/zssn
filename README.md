@@ -25,7 +25,7 @@ php artisan db:seed
 ```
 
 Then, run `php artisan serve`, and it will be available at http://localhost:8000/api. <br>
-Or if you using `Laragon` like me, it will be available at `project_name.test`. <br>
+Or if you using `Laragon` like me, it will be available at `project_name.test` and no need to run `php artisan serve`. <br>
 
 -------------------------------------------------------------------------
 
